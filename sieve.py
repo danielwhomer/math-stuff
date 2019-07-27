@@ -1,18 +1,23 @@
 import sys
 import math
 
-def sieve(n):
-	A = []
-	for x in range(2, n+1):
-		A.append(True)
-
-	for i in range(2, int(math.sqrt(n)), 2):	
-		if A[x-2] is True:
-			for j in range(i**2, n, i):
-				A[j-2] = False
-	return A
+#This function takes in a number n and returns a list of "True" or "False" from 2 to n where True = prime, False = not prime
 
 
-print(sieve(argv[1]))
+def sieve_of_eratosthenes(n):
+	multiples = []
+	primes = []
+	for i in range(2, n+1):
+		if i not in multiples:
+			primes.append(i)
+			for j in range(i*i, n+1, i):
+				multiples.append(j)
+	return primes
+
+s = sieve_of_eratosthenes(int(sys.argv[1]))
+
+print(s)
+
+		
 
 
